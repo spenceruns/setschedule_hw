@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css'
-import AutocompleteInput from './components/search-bar';
+import Search from './components/search';
 
 function App() {
-  let [address, setAddress] = useState('')
-
   return (
     <div className="app">
-      <input type="text" placeholder="Search"/>
-      <AutocompleteInput />
-      <input type="number" min="1" max="50"/>
-      <button>Click Me!</button>
+      <Search />
     </div>
   );
 }
