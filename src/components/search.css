@@ -1,0 +1,44 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+input {
+  margin: 50px;
+  height: 40px;
+  width: 500px;
+  color: #393e46;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+  background-color: #eeeeee;
+}
+
+button {
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 8px;
+  background-color: #00adb5;
+  color: #eeeeee;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #148b92;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
