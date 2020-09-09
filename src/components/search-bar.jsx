@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function AutocompleteInput() {
-  const [address, setAddress] = useState('')
+function AutocompleteInput(props) {
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`,
-      () => handleScriptLoad(setAddress, autoCompleteRef)
+      () => handleScriptLoad(props.setAddress, autoCompleteRef)
     );
   }, []);
 
@@ -15,9 +14,9 @@ function AutocompleteInput() {
     <div className="autocomplete">
       <input
         ref={autoCompleteRef}
-        onChange={event => setAddress(event.target.value)}
+        onChange={event => props.setAddress(event.target.value)}
         placeholder="Address"
-        value={address}
+        value={props.address}
       />
     </div>
   );
