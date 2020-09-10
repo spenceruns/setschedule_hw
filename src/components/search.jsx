@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './search.css'
 import AutocompleteInput from './search-bar';
 
-function Search() {
+function Search(props) {
   const [query, setQuery] = useState('')
   const [address, setAddress] = useState('')
-  const [radius, setRadius] = useState('')
+  const [distance, setDistance] = useState('')
   const [location, setLocation] = useState({})
 
   const SearchForLocatons = () => {
@@ -13,22 +13,33 @@ function Search() {
       .then(data => data.json())
       .then(result => {
         setLocation(result.results[0].geometry.location)
+        setQuery('')
         setAddress('')
+        setDistance('')
       })
       .catch(err => console.error(err))
   }
 
-  useEffect(() => fetchGoogleResults(), [location])
+  useEffect(() => {
+    fetchGoogleResults()
+    fetchYelpResults()
+  }, [location])
 
   const fetchGoogleResults = () => {
-    fetch(`/api/googlesearch?lat=${location.lat}&lng=${location.lng}`)
+    const radius = Math.floor(distance / 0.00062137)
+    fetch(`/api/googlesearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${radius}`)
       .then(data => data.json())
-      .then(result => console.log(result))
+      .then(result => props.setGStores(result.results))
       .catch(err => console.error(err))
-    // fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+toronto+canada&key=${process.env.REACT_APP_GOOGLE_KEY}`)
-    //   .then(data => data.json())
-    //   .then(result => console.log(result))
-    //   .catch(err => console.error(err))
+  }
+
+  const fetchYelpResults = () => {
+    const radius = Math.floor(distance / 0.00062137)
+    const yelpRadius = radius > 40000 ? 40000 : radius
+    fetch(`/api/yelpsearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${yelpRadius}`)
+      .then(data => data.json())
+      .then(result => props.setYStores(result.businesses))
+      .catch(err => console.error(err))
   }
 
   return (
@@ -39,12 +50,12 @@ function Search() {
         placeholder="Search"
         value={query}
       />
-      <AutocompleteInput address={address} setAddress={setAddress} />
+      <AutocompleteInput {...{address, setAddress}}/>
       <input
         type="number"
-        onChange={event => setRadius(event.target.value)}
+        onChange={event => setDistance(event.target.value)}
         placeholder="Radius (1-50 miles)"
-        value={radius}
+        value={distance}
       />
       <button onClick={SearchForLocatons}>Click Me!</button>
     </div>
