@@ -26,8 +26,6 @@ function Search(props) {
     fetchYelpResults()
   }
 
-  useEffectAfterRender(performSearch, location)
-
   const fetchGoogleResults = () => {
     const radius = Math.floor(distance / 0.00062137)
     fetch(`/api/googlesearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${radius}`)
@@ -45,8 +43,10 @@ function Search(props) {
       .catch(err => console.error(err))
   }
 
+  useEffectAfterRender(performSearch, location)
+
   return (
-    <div className="search">
+    <div className="search fade-in">
       <input
         type="text"
         onChange={event => setQuery(event.target.value)}

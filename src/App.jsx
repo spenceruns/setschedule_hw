@@ -10,8 +10,7 @@ function App() {
     <div className="app">
       <Search {...{ setGStores, setYStores }} />
       <div className="container">
-        <Output {...{ gStores }} />
-        <Output {...{ yStores }} />
+        <Output {...{ gStores, yStores }} />
       </div>
     </div>
   );

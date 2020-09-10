@@ -1,12 +1,14 @@
 import React from 'react'
 import "./output.css"
+import SearchResult from './search-result'
 
 function Output(props) {
-  const stores = props.gStores ? props.gStores : props.yStores
   return (
     <div className="output">
-      {stores &&
-        stores.map(store => <div className="store" key={store.id ? store.id : store.place_id}>{store.name}</div>)}
+      {props.gStores &&
+        props.gStores.map(store => <SearchResult key={store.place_id ? store.place_id : store.id} name={store.name} />)}
+      {props.yStores &&
+        props.yStores.map(store => <SearchResult key={store.place_id ? store.place_id : store.id} name={store.name} />)}
     </div>
   )
 }

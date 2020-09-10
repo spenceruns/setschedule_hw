@@ -3,31 +3,30 @@
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  margin: 10px;
+  margin: 75px 0 20px 0;
+}
+
+input, button {
+  height: 40px;
+  border: none;
+  outline: none;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 input {
-  margin: 30px;
-  height: 40px;
   width: 500px;
   color: #393e46;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  outline: none;
   background-color: #eeeeee;
 }
 
 button {
-  height: 50px;
   width: 100px;
-  border: none;
-  margin-bottom: 30px;
-  border-radius: 10px;
   background-color: #00adb5;
   color: #eeeeee;
   cursor: pointer;
-  outline: none;
+  transition: background-color 0.15s ease-in-out;
 }
 
 button:hover {
