@@ -8,22 +8,27 @@ function Search() {
   const [radius, setRadius] = useState('')
   const [location, setLocation] = useState({})
 
-  const testFunction = () => {
+  const SearchForLocatons = () => {
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
       .then(data => data.json())
       .then(result => {
         setLocation(result.results[0].geometry.location)
         setAddress('')
-        // fetchGoogleResults()
       })
       .catch(err => console.error(err))
   }
 
+  useEffect(() => fetchGoogleResults(), [location])
+
   const fetchGoogleResults = () => {
-    fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+toronto+canada&key=AIzaSyAI9tEbi6CZSXmjljZjV6ekS6jzCWrLqyY`)
+    fetch(`/api/googlesearch?lat=${location.lat}&lng=${location.lng}`)
       .then(data => data.json())
       .then(result => console.log(result))
       .catch(err => console.error(err))
+    // fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+toronto+canada&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+    //   .then(data => data.json())
+    //   .then(result => console.log(result))
+    //   .catch(err => console.error(err))
   }
 
   return (
@@ -41,7 +46,7 @@ function Search() {
         placeholder="Radius (1-50 miles)"
         value={radius}
       />
-      <button onClick={testFunction}>Click Me!</button>
+      <button onClick={SearchForLocatons}>Click Me!</button>
     </div>
   );
 }
