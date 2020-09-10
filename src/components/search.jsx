@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './search.css'
 import AutocompleteInput from './search-bar';
+import { useEffectAfterRender } from './useEffectAfterRender'
 
 function Search(props) {
   const [query, setQuery] = useState('')
@@ -20,10 +21,12 @@ function Search(props) {
       .catch(err => console.error(err))
   }
 
-  useEffect(() => {
+  const performSearch = () => {
     fetchGoogleResults()
     fetchYelpResults()
-  }, [location])
+  }
+
+  useEffectAfterRender(performSearch, location)
 
   const fetchGoogleResults = () => {
     const radius = Math.floor(distance / 0.00062137)
