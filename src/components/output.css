@@ -1,0 +1,16 @@
+.output {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 35%;
+  background-color: #393e46;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.store {
+  font-size: 1.5rem;
+  margin: 10px;
+  color: #eee;
+}
