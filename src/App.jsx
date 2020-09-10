@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import './App.css'
 import Search from './components/search';
-import Output from './components/output';
+import { useEffectAfterRender } from './components/useEffectAfterRender';
 
 function App() {
-  const [gStores, setGStores] = useState([])
-  const [yStores, setYStores] = useState([])
+  const [storeList, setStoreList] = useState([])
+  console.log(storeList)
   return (
     <div className="app">
-      <Search {...{ setGStores, setYStores }} />
+      <Search {...{ setStoreList }} />
       <div className="container">
-        <Output {...{ gStores, yStores }} />
       </div>
     </div>
   );

@@ -21,29 +21,18 @@ function Search(props) {
       .catch(err => console.error(err))
   }
 
-  const performSearch = () => {
-    fetchGoogleResults()
-    fetchYelpResults()
-  }
-
-  const fetchGoogleResults = () => {
-    const radius = Math.floor(distance / 0.00062137)
-    fetch(`/api/googlesearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${radius}`)
-      .then(data => data.json())
-      .then(result => props.setGStores(result.results))
-      .catch(err => console.error(err))
-  }
-
-  const fetchYelpResults = () => {
+  const fetchSearchResults = () => {
     const radius = Math.floor(distance / 0.00062137)
     const yelpRadius = radius > 40000 ? 40000 : radius
-    fetch(`/api/yelpsearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${yelpRadius}`)
-      .then(data => data.json())
-      .then(result => props.setYStores(result.businesses))
-      .catch(err => console.error(err))
+    Promise.all([
+      fetch(`/api/googlesearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${radius}`)
+        .then(data => data.json()),
+      fetch(`/api/yelpsearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${yelpRadius}`)
+        .then(data => data.json())
+    ]).then(result => props.setStoreList([...result[0].results, ...result[1].businesses]))
   }
 
-  useEffectAfterRender(performSearch, location)
+  useEffectAfterRender(fetchSearchResults, location)
 
   return (
     <div className="search fade-in">
