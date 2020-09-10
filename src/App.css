@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,8 +15,6 @@ body {
   min-height: 100vh;
   width: 100%;
   background-color: #222831;
-  justify-content: center;
-  align-items: center;
   display: flex;
   flex-flow: column;
 }
@@ -21,4 +23,20 @@ body {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+}
+
+.fade-in {
+  animation: fade-in 1s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -4,13 +4,17 @@
   align-items: center;
   flex-flow: column;
   width: 35%;
-  background-color: #393e46;
-  padding: 10px;
-  border-radius: 10px;
 }
 
 .store {
-  font-size: 1.2rem;
+  width: 80%;
+  background-color: #393e46;
+  font-size: 1.5rem;
   margin: 10px;
+  border-radius: 10px;
   color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
