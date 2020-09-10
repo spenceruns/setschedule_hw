@@ -13,12 +13,12 @@
   },
   "scripts": {
     "server": "node-env-run server --exec nodemon",
-    "dev": "run-p server start",
-    "start": "react-scripts start",
+    "dev": "run-p server develop",
+    "develop": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server-start": "NODE_ENV=production node server/index.js"
+    "start": "NODE_ENV=production node server/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
