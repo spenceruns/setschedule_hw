@@ -26,7 +26,7 @@ app.get('/api/yelpsearch', (req, res) => {
 });
 
 app.get('/api/googlestore', (req, res) => {
-  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.id}&fields=name,rating,formatted_phone_number,formatted_address,website&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.id}&fields=name,geometry,formatted_phone_number,formatted_address,website&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(data => data.json())
     .then(results => res.json(results))
     .catch(err => console.error(err));

@@ -5,7 +5,7 @@ function AutocompleteInput(props) {
 
   useEffect(() => {
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&libraries=places,geometry,drawing`,
       () => handleScriptLoad(props.setAddress, autoCompleteRef)
     );
   }, []);

@@ -101,3 +101,8 @@
 .details-container a:visited {
   color: #00adb5;
 }
+
+.map {
+  height: 100px;
+  width: 100px;
+}
