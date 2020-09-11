@@ -29,7 +29,12 @@ function Search(props) {
         .then(data => data.json()),
       fetch(`/api/yelpsearch?query=${query}&lat=${location.lat}&lng=${location.lng}&radius=${yelpRadius}`)
         .then(data => data.json())
-    ]).then(result => props.setStoreList([...result[0].results, ...result[1].businesses]))
+    ]).then(result => {
+      const num1 = result[0].results ? 0 : 1
+      const num2 = num1 === 0 ? 1 : 0
+      const stores = [...result[num2].businesses, ...result[num1].results].sort(() => Math.random - 0.5)
+      props.setStoreList(stores)}
+      )
   }
 
   useEffectAfterRender(fetchSearchResults, location)
