@@ -32,7 +32,13 @@ function Search(props) {
     ]).then(result => {
       const num1 = result[0].results ? 0 : 1
       const num2 = num1 === 0 ? 1 : 0
-      const stores = [...result[num2].businesses, ...result[num1].results].sort(() => Math.random - 0.5)
+      let stores = [...result[num2].businesses, ...result[num1].results]
+      for (let i = stores.length - 1; i > 0; i--) {
+        let randomNumber = Math.floor(Math.random() * i);
+        let temp = stores[i];
+        stores[i] = stores[randomNumber];
+        stores[randomNumber] = temp;
+      }
       props.setStoreList(stores)}
       )
   }
