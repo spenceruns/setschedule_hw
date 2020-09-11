@@ -43,7 +43,3 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
-.is-invalid {
-  border-radius: 2px solid red;
-}
