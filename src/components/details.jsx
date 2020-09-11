@@ -15,7 +15,7 @@ function Details(props) {
       <h1>{ store.name }</h1>
       <div>{ address }</div>
       <div>{ store.display_phone ? store.display_phone : store.formatted_phone_number }</div>
-      <a href={store.url ? store.url : store.website} target="_blank">More Info</a>
+      <a href={store.url ? store.url : store.website} target="_blank" rel="noopener noreferrer">More Info</a>
     </div>
   )
 }
